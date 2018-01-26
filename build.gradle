@@ -1,0 +1,181 @@
+group 'com'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'war'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+
+configurations { providedCompile }
+
+def var = dependencies {
+    //使用junit4  可以使用注解运行test
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    providedCompile "javax.servlet:javax.servlet-api:3.+"
+
+    //补全项目依赖
+    //slf4j  是规范/接口  日志实现 ：log4j  ,logback 。  使用 slf4j + logback。
+
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.12'
+
+    // https://mvnrepository.com/artifact/ch.qos.logback/logback-classic
+    //实现slf4j接口并整合
+    testCompile group: 'ch.qos.logback', name: 'logback-classic', version: '1.1.1'
+
+
+    // https://mvnrepository.com/artifact/ch.qos.logback/logback-core
+    compile group: 'ch.qos.logback', name: 'logback-core', version: '1.1.1'
+
+    //数据库相关依赖
+    // https://mvnrepository.com/artifact/mysql/mysql-connector-java
+    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.35'
+
+    //数据库连接池
+    // https://mvnrepository.com/artifact/c3p0/c3p0
+    compile group: 'c3p0', name: 'c3p0', version: '0.9.1.2'
+
+    //dao框架依赖 mybatis
+    // https://mvnrepository.com/artifact/org.mybatis/mybatis
+    compile group: 'org.mybatis', name: 'mybatis', version: '3.3.0'
+
+    //和 spring整合，自身实现的spring整合依赖
+    // https://mvnrepository.com/artifact/org.mybatis/mybatis-spring
+    compile group: 'org.mybatis', name: 'mybatis-spring', version: '1.2.3'
+
+    //servlet web相关依赖
+    // https://mvnrepository.com/artifact/taglibs/standard
+    compile group: 'taglibs', name: 'standard', version: '1.1.2'
+
+    // https://mvnrepository.com/artifact/jstl/jstl
+    compile group: 'jstl', name: 'jstl', version: '1.2'
+
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.5.4'
+
+    // https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api
+    //provided group: 'javax.servlet', name: 'javax.servlet-api', version: '3.0.1'
+
+    //spring依赖
+    //   spring核心依赖
+    // https://mvnrepository.com/artifact/org.springframework/spring-core
+    compile group: 'org.springframework', name: 'spring-core', version: '4.1.7.RELEASE'
+
+    // https://mvnrepository.com/artifact/org.springframework/spring-beans
+    compile group: 'org.springframework', name: 'spring-beans', version: '4.1.7.RELEASE'
+
+    // https://mvnrepository.com/artifact/org.springframework/spring-context
+    compile group: 'org.springframework', name: 'spring-context', version: '4.1.7.RELEASE'
+
+    //spring  dao层
+    // https://mvnrepository.com/artifact/org.springframework/spring-jdbc
+    compile group: 'org.springframework', name: 'spring-jdbc', version: '4.1.7.RELEASE'
+
+    // https://mvnrepository.com/artifact/org.springframework/spring-tx
+    compile group: 'org.springframework', name: 'spring-tx', version: '4.1.7.RELEASE'
+
+    //spring  web相关依赖
+    // https://mvnrepository.com/artifact/org.springframework/spring-web
+    compile group: 'org.springframework', name: 'spring-web', version: '4.1.7.RELEASE'
+
+    // https://mvnrepository.com/artifact/org.springframework/spring-webmvc
+    compile group: 'org.springframework', name: 'spring-webmvc', version: '4.1.7.RELEASE'
+
+    //spring  test依赖
+    // https://mvnrepository.com/artifact/org.springframework/spring-test
+    testCompile group: 'org.springframework', name: 'spring-test', version: '4.1.7.RELEASE'
+
+    //redis
+    // https://mvnrepository.com/artifact/redis.clients/jedis
+    compile group: 'redis.clients', name: 'jedis', version: '2.7.3'
+
+
+
+    // https://mvnrepository.com/artifact/com.dyuproject.protostuff/protostuff-core
+    testCompile group: 'com.dyuproject.protostuff', name: 'protostuff-core', version: '1.0.8'
+
+    // https://mvnrepository.com/artifact/com.dyuproject.protostuff/protostuff-runtime
+    testCompile group: 'com.dyuproject.protostuff', name: 'protostuff-runtime', version: '1.0.8'
+
+    // https://mvnrepository.com/artifact/com.dyuproject.protostuff/protostuff-api
+    compile group: 'com.dyuproject.protostuff', name: 'protostuff-api', version: '1.0.8'
+
+    // https://mvnrepository.com/artifact/com.dyuproject.protostuff/protostuff-collectionschema
+    compile group: 'com.dyuproject.protostuff', name: 'protostuff-collectionschema', version: '1.0.8'
+    // https://mvnrepository.com/artifact/com.dyuproject.protostuff/protostuff-json
+    compile group: 'com.dyuproject.protostuff', name: 'protostuff-json', version: '1.0.8'
+
+    // https://mvnrepository.com/artifact/com.dyuproject.protostuff/protostuff-model
+    compile group: 'com.dyuproject.protostuff', name: 'protostuff-model', version: '1.0.8'
+
+    // https://mvnrepository.com/artifact/com.dyuproject.protostuff/protostuff-runtime-registry
+    testCompile group: 'com.dyuproject.protostuff', name: 'protostuff-runtime-registry', version: '1.0.8'
+
+    // https://mvnrepository.com/artifact/com.dyuproject.protostuff/protostuff-compiler
+    compile group: 'com.dyuproject.protostuff', name: 'protostuff-compiler', version: '1.0.8'
+
+    // https://mvnrepository.com/artifact/com.dyuproject.protostuff/protostuff-xml
+    compile group: 'com.dyuproject.protostuff', name: 'protostuff-xml', version: '1.0.8'
+
+    // https://mvnrepository.com/artifact/com.dyuproject.protostuff/protostuff-parser
+    compile group: 'com.dyuproject.protostuff', name: 'protostuff-parser', version: '1.0.8'
+
+
+    // https://mvnrepository.com/artifact/com.dyuproject.protostuff/protostuff-runtime-view
+    compile group: 'com.dyuproject.protostuff', name: 'protostuff-runtime-view', version: '1.0.8'
+
+
+    // https://mvnrepository.com/artifact/com.dyuproject.protostuff/protostuff-codegen
+    compile group: 'com.dyuproject.protostuff', name: 'protostuff-codegen', version: '1.0.8'
+
+    // https://mvnrepository.com/artifact/com.dyuproject.protostuff/protostuff-runtime-md
+    compile group: 'com.dyuproject.protostuff', name: 'protostuff-runtime-md', version: '1.0.8'
+
+    // https://mvnrepository.com/artifact/com.dyuproject.protostuff/protostuff-model-json
+    compile group: 'com.dyuproject.protostuff', name: 'protostuff-model-json', version: '1.0.8'
+
+    // https://mvnrepository.com/artifact/com.dyuproject.protostuff/protostuff-yaml
+    compile group: 'com.dyuproject.protostuff', name: 'protostuff-yaml', version: '1.0.8'
+
+    // https://mvnrepository.com/artifact/com.dyuproject.protostuff/protostuff-me
+    compile group: 'com.dyuproject.protostuff', name: 'protostuff-me', version: '1.0.8'
+
+    // https://mvnrepository.com/artifact/com.dyuproject.protostuff/protostuff-kvp
+    compile group: 'com.dyuproject.protostuff', name: 'protostuff-kvp', version: '1.0.8'
+
+    // https://mvnrepository.com/artifact/com.dyuproject.protostuff/protostuff-runtime-view
+    compile group: 'com.dyuproject.protostuff', name: 'protostuff-runtime-view', version: '1.0.8'
+
+    // https://mvnrepository.com/artifact/com.dyuproject.protostuff/protostuff-uberjar
+    compile group: 'com.dyuproject.protostuff', name: 'protostuff-uberjar', version: '1.0.8'
+
+    // https://mvnrepository.com/artifact/com.dyuproject.protostuff/protostuff-maven-plugin
+    compile group: 'com.dyuproject.protostuff', name: 'protostuff-maven-plugin', version: '1.0.8'
+
+    // https://mvnrepository.com/artifact/com.dyuproject.protostuff/protostuff-me
+    compile group: 'com.dyuproject.protostuff', name: 'protostuff-me', version: '1.0.8'
+
+    // https://mvnrepository.com/artifact/com.dyuproject.protostuff/protostuff
+    compile group: 'com.dyuproject.protostuff', name: 'protostuff', version: '1.0.8', ext: 'pom'
+
+
+    // https://mvnrepository.com/artifact/org.apache.thrift/libthrift
+    compile group: 'org.apache.thrift', name: 'libthrift', version: '0.10.0', ext: 'pom'
+
+
+
+
+
+
+
+
+
+
+}
