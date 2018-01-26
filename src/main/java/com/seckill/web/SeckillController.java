@@ -41,7 +41,6 @@ public class SeckillController {
 
         return "list"; //代表 WEB-INF/jsp/list.jsp
 
-
     }
 
     @RequestMapping(value = "/{seckillId}/detail", method = RequestMethod.GET)
